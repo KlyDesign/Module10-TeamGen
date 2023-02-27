@@ -1,0 +1,27 @@
+{
+  "name": "module10-teamgen",
+  "version": "1.0.0",
+  "description": "Team Generator with Inquirer",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KlyDesign/Module10-TeamGen.git"
+  },
+  "keywords": [
+    "Inquirer",
+    "Node"
+  ],
+  "author": "KlyDesign, Kyle Hipple, or Kly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KlyDesign/Module10-TeamGen/issues"
+  },
+  "homepage": "https://github.com/KlyDesign/Module10-TeamGen#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "jest": "^29.4.3"
+  }
+}
