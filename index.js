@@ -1,7 +1,6 @@
 //Node Modules
 const inquirer = require('inquirer');
 const fs = require('fs');
-const path = require('path');
 
 //Employee Classes
 const Manager = require('./lib/Manager');
@@ -44,3 +43,12 @@ const questions = async () => {
     //  i ntern needs  school get ro le to be overwri tten
     return answers;
 }
+//check if inquirer is working
+const init = async () => {
+    const answers = await questions();
+    console.log(answers);
+}
+
+
+//init function
+init();
