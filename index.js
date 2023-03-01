@@ -36,13 +36,11 @@ const manyQuestions = async () => {
     ]);
     const managerClassCreation = async (DATA) => {
         const { name, id,  email, officeNumber} = DATA;
-        console.log(answersManeger)
         const manager = new Manager(name, id, email, officeNumber);
-        return manager;
+        console.log(manager);
+        member.push(manager);
     }
     managerClassCreation(answersManeger);
-    member.push(answersManeger);
-    await addMember();
 }
 
 const addMember = async () => {
@@ -60,9 +58,10 @@ const addMember = async () => {
     if (answersChoice.addMember === 'Intern') {
         await internQuestions();
     }
-    if (answersChoice.addMember === 'No') {
+    else if (answersChoice.addMember === 'No') {
         return
     }
+    else{ return }
 }
 
 const engineerQuestions = async () => {
@@ -71,6 +70,11 @@ const engineerQuestions = async () => {
             type: 'input',
             name: 'name',
             message: 'Employee name?',
+        },
+        { 
+            type: 'input',
+            name: 'id',
+            message: 'Employee id?',
         },
         {
             type: 'input',
@@ -83,8 +87,14 @@ const engineerQuestions = async () => {
             message: 'Employees GitHub?' ,
         },
     ]);
-    const newEngineer = new Engineer(answersEngineer.name, answersEngineer.email, answersEngineer.github);
-    member.push(newEngineer);
+
+    const EngineerClassCreation = async (DATA) => {
+        const { name, id,  email, github} = DATA;
+        const engineer = new Engineer(name, id, email, github);
+        console.log(engineer);
+        member.push(engineer);
+    }
+    EngineerClassCreation(answersEngineer);
     await addMember();
 }
 
@@ -94,6 +104,11 @@ const internQuestions = async () => {
             type: 'input',
             name: 'name',
             message: 'Employee name?',
+        },
+        { 
+            type: 'input',
+            name: 'id',
+            message: 'Employee id?',
         },
         {
             type: 'input',
@@ -106,13 +121,19 @@ const internQuestions = async () => {
             message: 'Employees school?' ,
         },
     ]);
-    const newIntern = new Intern(answersIntern.name, answersIntern.email, answersIntern.school);
-    member.push(newIntern);
+    const InternClassCreation = async (DATA) => {
+        const { name, id,  email, school} = DATA;
+        const intern = new Intern(name, id, email, school);
+        console.log(intern);
+        member.push(intern);
+    }
+    InternClassCreation(answersIntern);
     await addMember();
 }
 
 const init = async () => {
     await manyQuestions();
-    console.log (member);
+    await addMember();
+    console.log(member);
 }
 init();
