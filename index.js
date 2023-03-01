@@ -1,6 +1,8 @@
 //Node Modules
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
+const templateHelper = require('./src/templateHelper');
 
 //Employee Classes
 const Manager = require('./lib/Manager');

@@ -1,27 +1,37 @@
-htmlOut= "";
+htmlOut= [];
 
-//figure out how to take inquirer answers and make them into html
-
-
-const GeneratedHTML = (team) => {
-    const GenerateManager = (manager) => {
-        return `
-        <div class="card col-3 m-3">
-            <div class="card-header display-6 text-white bg-success">
-                ${manager.name}
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${manager.getId()}</li>
-                <li class="list-group-item">Email: ${manager.getRole()}</li>
-                <li class="list-group-item">Office: ${manager.getOfficeNumber}</li>
-            </ul>
+const GenerateManager = async (manager) => {
+    return `
+    <div class="card col-3 m-3">
+        <div class="card-header display-6 text-white bg-success">
+            ${manager.name}
         </div>
-        `  
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${manager.getId()}</li>
+            <li class="list-group-item">Email: ${manager.getRole()}</li>
+            <li class="list-group-item">Office: ${manager.getOfficeNumber}</li>
+        </ul>
+    </div>
+    `  
+}
+const GenerateTeam = async (team) => {
+    for (let i = 0; i < team.length; i++) {
+        const employee = team[i];
+        const role = employee.getRole();
+        if (role === "Manager") {
+            htmlOut += await GenerateManager(employee);
+        }
+        if (role === "Engineer") {
+            htmlOut += await GenerateEngineer(employee);
+        }
+        if (role === "Intern") {
+            htmlOut += await GenerateIntern(employee);
+        }
     }
+    return htmlOut;
 }
 
-
-module.exports = page => {
+const GeneratedPage =  async () => {
     return `<!doctype html>
     <html lang="en">
         <head>
@@ -37,9 +47,11 @@ module.exports = page => {
         <br>
         <div class="container-fluid mx-auto col-10">
 
-                ${GeneratedHTML(team)}
+            ${GenerateTeam(team)}
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         </body>
     </html>`
 }
+
+module.exports = GeneratedPage;
