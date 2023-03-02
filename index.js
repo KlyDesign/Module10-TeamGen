@@ -6,11 +6,9 @@ const templateHelper = require('./src/templateHelper');
 
 //Employee Classes
 const Manager = require('./lib/Manager');
-const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const member = [];
-
 //Questions Function for inquirer
 //many maneger questions lol thought it was funny 
 const manyQuestions = async () => {
@@ -39,7 +37,6 @@ const manyQuestions = async () => {
     const managerClassCreation = async (DATA) => {
         const { name, id,  email, officeNumber} = DATA;
         const manager = new Manager(name, id, email, officeNumber);
-        console.log(manager);
         member.push(manager);
     }
     managerClassCreation(answersManeger);
@@ -63,7 +60,6 @@ const addMember = async () => {
     else if (answersChoice.addMember === 'No') {
         return
     }
-    else{ return }
 }
 
 const engineerQuestions = async () => {
@@ -93,7 +89,6 @@ const engineerQuestions = async () => {
     const EngineerClassCreation = async (DATA) => {
         const { name, id,  email, github} = DATA;
         const engineer = new Engineer(name, id, email, github);
-        console.log(engineer);
         member.push(engineer);
     }
     EngineerClassCreation(answersEngineer);
@@ -133,9 +128,12 @@ const internQuestions = async () => {
     await addMember();
 }
 
+
 const init = async () => {
     await manyQuestions();
     await addMember();
-    console.log(member);
-}
+    const html = await templateHelper(member);
+    console.log(html);
+
+ }
 init();
