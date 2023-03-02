@@ -1,5 +1,3 @@
-
-
 GenerateTeam = async (data) => {
     htmlOut= [];
     for (let i = 0; i < data.length; i++) {
@@ -21,7 +19,7 @@ const GenerateManager = async (manager) => {
     return `
     <div class="card col-3 m-3">
         <div class="card-header display-6 text-white bg-success">
-            ${manager.name}
+            ${manager.name} // ${manager.getRole()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${manager.id}</li>
@@ -35,7 +33,7 @@ const GenerateEngineer = async (engineer) => {
     return `
     <div class="card col-3 m-3">
         <div class="card-header display-6 text-white bg-success">
-            ${engineer.name}    
+            ${engineer.name} // ${engineer.getRole()}    
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${engineer.id}</li>
@@ -49,7 +47,7 @@ const GenerateIntern = async (intern) => {
     return `
     <div class="card col-3 m-3">
         <div class="card-header display-6 text-white bg-success">
-            ${intern.name}
+            ${intern.name} // ${intern.getRole()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${intern.id}</li>

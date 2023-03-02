@@ -133,7 +133,14 @@ const init = async () => {
     await manyQuestions();
     await addMember();
     const html = await templateHelper(member);
-    console.log(html);
+    fs.writeFile(path.join('./dist/gens/index.html'), html, err => {
+        if (err){ 
+            console.log(err);
+        }
+        else{
+        console.log('Wrote to a sick Bootstrap page!');
+        }
+    });
 
  }
 init();
